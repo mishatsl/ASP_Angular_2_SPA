@@ -1,0 +1,32 @@
+
+<h1>Saved parsing</h1>
+
+
+
+<p *ngIf="!dataLoaded"><em>Loading...</em></p>
+
+<table class='table' *ngIf="dataLoaded">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Url</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of parsingListViewModel.parsingInfoSimplifieds | paginate: { itemsPerPage: maxSize, currentPage: currentPage, totalItems: totalItems }">
+            <td>{{ p.parsingInfoSName }}</td>
+            <td>{{ p.url }}</td>
+            <td>
+                <a [routerLink]="['/loaded-parsing']" [queryParams]="{'id':p.parsingInfoSimplifiedId}" class="btn btn-sm btn-success">Load</a>
+                <button (click)="delete(p.parsingInfoSimplifiedId)" class="btn btn-sm btn-danger">Delete</button>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+<!--<ng-pagination [totalItems]="totalItems" [(ngModel)]="currentPage" [maxSize]="maxSize" [boundaryLinks]="true" (pageChanged)="pageChanged($event)"
+               previous-text="&lsaquo;" next-text="&rsaquo;" first-text="First" last-text="Last">-->
+<!--<ngb-pagination [collectionSize]="totalItems" [(page)]="currentPage" [maxSize]="maxSize" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChanged)="pageChanged(currentPage)"></ngb-pagination>-->
+<!--<ngb-pagination [collectionSize]="50" [(page)]="1" size="sm"></ngb-pagination>-->
+
+<pagination-controls (pageChange)="pagechanged($event)"></pagination-controls>

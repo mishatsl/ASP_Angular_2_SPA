@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<app asp-prerender-module="ClientApp/dist/main-server"><div id="circularG">
+    <div id="circularG_1" class="circularG"></div>
+    <div id="circularG_2" class="circularG"></div>
+    <div id="circularG_3" class="circularG"></div>
+    <div id="circularG_4" class="circularG"></div>
+    <div id="circularG_5" class="circularG"></div>
+    <div id="circularG_6" class="circularG"></div>
+    <div id="circularG_7" class="circularG"></div>
+    <div id="circularG_8" class="circularG"></div>
+</div></app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,4 @@
+
+    <h1 *ngIf="loaded">Saved parsing {{parsingInfo.parsingName}}</h1>
+    <p *ngIf="!loaded"><em>Loading...</em></p>
+    <taps [parsingInfo]="parsingInfo"></taps>

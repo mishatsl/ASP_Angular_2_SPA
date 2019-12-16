@@ -1,0 +1,86 @@
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#title" aria-controls="home" role="tab" data-toggle="tab">Title</a></li>
+        <li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
+        <li role="presentation"><a href="#h1" aria-controls="messages" role="tab" data-toggle="tab">h1</a></li>
+        <li role="presentation"><a href="#img" aria-controls="settings" role="tab" data-toggle="tab">images</a></li>
+        <li role="presentation"><a href="#internalahref" aria-controls="settings" role="tab" data-toggle="tab">internalAHREFS</a></li>
+        <li role="presentation"><a href="#externalahref" aria-controls="settings" role="tab" data-toggle="tab">externalAHREFS</a></li>
+        <li role="presentation"><a href="#ServerResponce" aria-controls="settings" role="tab" data-toggle="tab">ServerResponce</a></li>
+        <li role="presentation"><a href="#ResponseTime" aria-controls="settings" role="tab" data-toggle="tab">ResponseTime</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="title">
+            <p>Count of tags: {{parsingInfo.titleCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'title' " >
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+            </div>
+         </div>
+        <div role="tabpanel" class="tab-pane" id="description">
+            <p>Count of tags: {{parsingInfo.descriptionCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'description' ">
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+            
+        </div>
+        <div role="tabpanel" class="tab-pane" id="h1">
+            <p>Count of tags: {{parsingInfo.h1Count}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'h1' ">
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="img">
+            <p>Count of tags: {{parsingInfo.imagesCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'img' ">
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="internalahref">
+            <p>Count of tags:  {{parsingInfo.internalAHREFSCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'internalAHREF' ">
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="externalahref">
+            <p>Count of tags: {{parsingInfo.externalAHREFSCount}}</p>
+            <div *ngFor="let nodeInfo of  parsingInfo.nodesInfoList | filterNode : 'externalAHREF' ">
+                <p>{{nodeInfo.index}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ServerResponce">
+            Server Responce:
+            {{parsingInfo.serverResponce}}
+        </div>
+    <div role="tabpanel" class="tab-pane" id="ResponseTime">
+        ResponseTime:
+        {{parsingInfo.responseTime}}
+
+    </div>
+</div>
+    </div>
+
+
+
+
+

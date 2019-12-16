@@ -1,0 +1,86 @@
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#Title" aria-controls="home" role="tab" data-toggle="tab">Title</a></li>
+        <li role="presentation"><a href="#Description" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
+        <li role="presentation"><a href="#h1" aria-controls="messages" role="tab" data-toggle="tab">h1</a></li>
+        <li role="presentation"><a href="#images" aria-controls="settings" role="tab" data-toggle="tab">images</a></li>
+        <li role="presentation"><a href="#InternalAHREFS" aria-controls="settings" role="tab" data-toggle="tab">InternalAHREFS</a></li>
+        <li role="presentation"><a href="#ExternalAHREFS" aria-controls="settings" role="tab" data-toggle="tab">ExternalAHREFS</a></li>
+        <li role="presentation"><a href="#ServerResponce" aria-controls="settings" role="tab" data-toggle="tab">ServerResponce</a></li>
+        <li role="presentation"><a href="#ResponseTime" aria-controls="settings" role="tab" data-toggle="tab">ResponseTime</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="Title">
+            <p>Count of tags: {{parsingInfo.titleCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.titles" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+            </div>
+         </div>
+        <div role="tabpanel" class="tab-pane" id="Description">
+            <p>Count of tags: {{parsingInfo.descriptionCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.descriptions" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+            
+        </div>
+        <div role="tabpanel" class="tab-pane" id="h1">
+            <p>Count of tags: {{parsingInfo.h1Count}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.h1s" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="images">
+            <p>Count of tags: {{parsingInfo.imagesCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.images" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="InternalAHREFS">
+            <p>Count of tags:  {{parsingInfo.internalAHREFSCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.internalAHREFS" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ExternalAHREFS">
+            <p>Count of tags: {{parsingInfo.externalAHREFSCount}}</p>
+            <div *ngFor="let nodeInfo of parsingInfo.externalAHREFS" class="pre-scrollable">
+                <p>Node name:{{nodeInfo.name}}</p>
+                <p>{{nodeInfo.outerHtml}}</p>
+                <p>Content:{{nodeInfo.content}}</p>
+                <p></p>
+            </div>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="ServerResponce">
+            Server Responce:
+            {{parsingInfo.serverResponce}}
+        </div>
+    <div role="tabpanel" class="tab-pane" id="ResponseTime">
+        ResponseTime:
+        {{parsingInfo.responseTime}}
+
+    </div>
+</div>
+    </div>
+
+
+
+
+

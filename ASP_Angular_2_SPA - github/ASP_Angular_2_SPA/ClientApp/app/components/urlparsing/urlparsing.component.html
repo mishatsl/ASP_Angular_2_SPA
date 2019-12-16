@@ -1,0 +1,152 @@
+﻿
+
+<div>
+    <h1>Site Parsing</h1>
+
+   
+
+    <form #ngForm="ngForm" novalidate>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" [disabled]="url.invalid" type="button" (click)="parse(url,ngForm)">Parse</button>
+                    </span>
+                    <input type="text" [(ngModel)]="parsingInfo.url" name="url" class="form-control" placeholder="Parse for..." #url="ngModel"
+                           required
+                           pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$">
+
+                </div><!-- /input-group -->
+
+                <div *ngIf="url.invalid" class="alert alert-danger">
+                    {{error}}
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-info " type="button" (click)="douUrl()">Dou url</button>
+            </div>
+        </div>
+    </form>
+    <p *ngIf="IsParsing"><em>Parsing...</em></p>
+    <p *ngIf="IsSaving"><em>Saving...</em></p>
+    <div *ngIf="parsingLoaded">
+        <div class="row margin">
+            <div class="col-md-10">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" (click)="save()">Save</button>
+                    </span>
+                    <input type="text" [(ngModel)]="parsingInfo.parsingName" class="form-control" placeholder="Enter name...">
+                </div><!-- /input-group -->
+            </div>
+        </div>
+
+        <taps [parsingInfo]="parsingInfo" scroll (onScrollEnd)="onScrollDown()" [delay]="1100"></taps>
+        <!--[parsingInfo]="parsingInfo"
+              infinite-scroll
+              [infiniteScrollDistance]="2"
+              [infiniteScrollThrottle]="500"
+              [infiniteScrollContainer]="taps"
+              [immediateCheck]="true"
+              (scrolled)="onScrollDown()"-->
+        <div>
+
+            <!-- Nav tabs -->
+            <!--<ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#title" aria-controls="home" role="tab" data-toggle="tab">Title</a></li>
+                <li role="presentation"><a href="#description" aria-controls="profile" role="tab" data-toggle="tab">Description</a></li>
+                <li role="presentation"><a href="#h1" aria-controls="messages" role="tab" data-toggle="tab">h1</a></li>
+                <li role="presentation"><a href="#img" aria-controls="settings" role="tab" data-toggle="tab">images</a></li>
+                <li role="presentation"><a href="#internalahref" aria-controls="settings" role="tab" data-toggle="tab">internalAHREFS</a></li>
+                <li role="presentation"><a href="#externalahref" aria-controls="settings" role="tab" data-toggle="tab">externalAHREFS</a></li>
+                <li role="presentation"><a href="#ServerResponce" aria-controls="settings" role="tab" data-toggle="tab">ServerResponce</a></li>
+                <li role="presentation"><a href="#ResponseTime" aria-controls="settings" role="tab" data-toggle="tab">ResponseTime</a></li>
+            </ul>-->
+            <!-- Tab panes -->
+            <!--<div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="title"
+                     infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500"
+                     (scrolled)="onScrollDown()">
+                    <p>Count of tags: {{parsingInfo.titleCount}}</p>
+                    <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'title' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="description" infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500">
+                    <p>Count of tags: {{parsingInfo.descriptionCount}}</p>
+                    <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'description' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                        <p></p>
+                    </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="h1"
+                     infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500">
+                    <p>Count of tags: {{parsingInfo.h1Count}}</p>
+                    <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'h1' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="img"
+                     infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500">
+                    <p>Count of tags: {{parsingInfo.imagesCount}}</p>
+                    <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'img' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="internalahref"
+                     infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500">
+                    <p>Count of tags:  {{parsingInfo.internalAHREFSCount}}</p>
+                    <div *ngFor="let nodeInfo of parsingInfo.nodesInfoList | filterNode : 'internalAHREF' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="externalahref"
+                     infinite-scroll
+                     [infiniteScrollDistance]="2"
+                     [infiniteScrollThrottle]="500">
+                    <p>Count of tags: {{parsingInfo.externalAHREFSCount}}</p>
+                    <div *ngFor="let nodeInfo of  parsingInfo.nodesInfoList | filterNode : 'externalAHREF' ">
+                        <p>{{nodeInfo.index}}</p>
+                        <p>{{nodeInfo.outerHtml}}</p>
+                        <p>Content:{{nodeInfo.content}}</p>
+                        <p></p>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="ServerResponce">
+                    Server Responce:
+                    {{parsingInfo.serverResponce}}
+                </div>
+                <div role="tabpanel" class="tab-pane" id="ResponseTime">
+                    ResponseTime:
+                    {{parsingInfo.responseTime}}
+
+                </div>
+            </div>-->
+        </div>
+    </div>
+    <!--[infiniteScrollUpDistance]="50"-->
+    </div>
