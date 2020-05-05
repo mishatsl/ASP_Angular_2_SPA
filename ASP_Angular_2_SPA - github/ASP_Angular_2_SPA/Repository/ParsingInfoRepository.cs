@@ -15,7 +15,7 @@ namespace ASP_Angular_2_SPA.Repository
             ParsingInfoContext = parsingInfoContext;
         }
 
-        public IEnumerable<ParsingInfo> ParsingInfos { get { return ParsingInfoContext.ParsingInfos; } }
+        public IQueryable<ParsingInfo> ParsingInfos { get { return ParsingInfoContext.ParsingInfos.AsNoTracking(); } }
 
         public ParsingInfo DeleteParsingInfo(int id)
         {
@@ -30,7 +30,7 @@ namespace ASP_Angular_2_SPA.Repository
 
         public ParsingInfo GetParsingInfo(int id)
         {
-            ParsingInfo parsingInfo = ParsingInfoContext.ParsingInfos.Include(p => p.NodesInfoList).FirstOrDefault(p => p.Id == id);
+            ParsingInfo parsingInfo = ParsingInfoContext.ParsingInfos.AsNoTracking().Include(p => p.NodesInfoList).FirstOrDefault(p => p.Id == id);
             return parsingInfo;
         }
 

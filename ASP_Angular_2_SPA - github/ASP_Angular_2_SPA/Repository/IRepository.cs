@@ -8,7 +8,7 @@ namespace ASP_Angular_2_SPA.Repository
 {
     public interface IRepository
     {
-        IEnumerable<ParsingInfo> ParsingInfos  { get; }
+        IQueryable<ParsingInfo> ParsingInfos  { get; }
         ParsingInfo GetParsingInfo(int id);
         void SaveParsingInfo(ParsingInfo parsingInfo);
         ParsingInfo DeleteParsingInfo(int id);
