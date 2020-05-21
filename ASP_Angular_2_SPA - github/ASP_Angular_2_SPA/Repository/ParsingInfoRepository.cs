@@ -31,8 +31,8 @@ namespace ASP_Angular_2_SPA.Repository
         public ParsingInfo GetParsingInfo(int id)
         {
             //ParsingInfo parsingInfo = ParsingInfoContext.ParsingInfos.Include(p => p.NodesInfoList).FirstOrDefault(p => p.Id == id);
-            Microsoft.Data.SqlClient.SqlParameter param = new Microsoft.Data.SqlClient.SqlParameter("@Id");
-            ParsingInfo parsingInfo = ParsingInfoContext.ParsingInfos.FromSqlRaw("GetParsingInfoById @Id", param);
+            System.Data.SqlClient.SqlParameter param = new System.Data.SqlClient.SqlParameter("@Id",id);
+            ParsingInfo parsingInfo = ParsingInfoContext.ParsingInfos.FromSql("GetParsingInfoById @Id", param).FirstOrDefault();
             return parsingInfo;
         }
 
